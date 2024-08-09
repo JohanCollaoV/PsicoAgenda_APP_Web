@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-toolbar class="toolbarheader">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/login">Entrar</ion-button>
+      <ion-button (click)="redirectTo('/registropaciente')">Registrarse</ion-button>
+      <ion-button (click)="toggleOptions()">Profesionales</ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <a style="color: #000000" (click)="goHome()" class="logo-link">
+        <img src="../../assets/icon/psicoagendalogo.png" alt="Logo" class="header-logo" />
+        PsicoAgenda
+      </a>
+    </ion-title>
+  </ion-toolbar>
+  <ion-list class="opciones-lista" *ngIf="showOptions">
+    <ion-button class="opciones-item" (click)="redirectTo('/login')">Ingresa</ion-button>
+    <ion-button class="opciones-item" (click)="redirectTo('/registropsico')">Registrate</ion-button>
+  </ion-list>
+</ion-header>
+
+<ion-content style="--background: url(../../../assets/icon/psicologia.png) no-repeat center center / cover;">
+  <div class="form-container">
+    <ion-title class="titulo-formulario">Únete como paciente</ion-title>
+    <form (ngSubmit)="register()">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-input label="Rut" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_rut" name="rut"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input label="Calle" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_calle" name="calle"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input label="Número" label-placement="floating" fill="outline" type="number" [(ngModel)]="mdl_numero" name="numero" (ionInput)="validateNumero($event)" min="1" max="99999"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-select label="Comuna" label-placement="floating" fill="outline" name="comuna" [(ngModel)]="idComuna">
+              <ion-select-option *ngFor="let comuna of lista_comunas" [value]="comuna.IdComuna">{{ comuna.NombreComuna }}</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col>
+            <ion-input label="Primer Nombre" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_primerNombre" name="primerNombre"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input label="Segundo Nombre" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_segundoNombre" name="segundoNombre"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input label="Apellido Paterno" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_apellidoPaterno" name="apellidoPaterno"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input label="Apellido Materno" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_apellidoMaterno" name="apellidoMaterno"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input label="Teléfono" label-placement="floating" fill="outline" type="tel" [(ngModel)]="mdl_telefono" name="telefono" maxlength="9" (ionInput)="validatePhone($event)"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-input label="Fecha de Nacimiento" label-placement="floating" fill="outline" type="date" [(ngModel)]="mdl_fechaNacimiento" name="fechaNacimiento"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input label="Correo Electrónico" label-placement="floating" fill="outline" type="email" [(ngModel)]="mdl_correo" name="correo"></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-input label="Contraseña" label-placement="floating" fill="outline" type="password" [(ngModel)]="mdl_contrasena" name="contrasena"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button class="ion-button-registar" expand="block" type="submit">Registrar</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </div>
+
+  <ion-footer>
+    <ion-toolbar>
+      <div class="footer-content">
+        <div class="footer-left">
+          <p>©2024 - PsicoAgenda APP</p>
+          <p>Todos los Derechos Reservados</p>
+        </div>
+        <div class="footer-center">
+          <!-- Aquí puedes agregar el contenido del bloque central -->
+        </div>
+        <div class="footer-right">
+          <p class="logo-link">
+            <ion-icon class="header-logo" name="call-outline"></ion-icon>Teléfono Contacto: 920256865
+          </p>
+          <p class="logo-link">
+            <ion-icon class="header-logo" name="logo-instagram"></ion-icon>www.instagram.com/psicoagenda
+          </p>
+        </div>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+
+  <ion-alert [isOpen]="isAlertOpen" header="Información" message="No puede dejar campos vacíos" [buttons]="alertButtons" (didDismiss)="setOpen(false)">
+  </ion-alert>
+  <ion-alert [isOpen]="isAlertOpen2" header="Información" message="RUT inválido. Por favor ingrese un RUT válido." [buttons]="alertButtons" (didDismiss)="setOpen2(false)">
+  </ion-alert>
+  <ion-alert [isOpen]="isAlertOpen4" header="Información" message="Correo inválido. Por favor ingrese un Correo válido." [buttons]="alertButtons" (didDismiss)="setOpen4(false)">
+  </ion-alert> 
+  <ion-alert [isOpen]="isAlertOpen5" header="Información" message="Error al completar el registro." [buttons]="alertButtons" (didDismiss)="setOpen5(false)" (click)="goHome()">
+  </ion-alert>
+  <ion-alert [isOpen]="isAlertOpen3" header="Información" message="Registro Completado" [buttons]="alertButtons" (didDismiss)="setOpen(false)" (click)="goHome()">
+  </ion-alert>
+</ion-content>

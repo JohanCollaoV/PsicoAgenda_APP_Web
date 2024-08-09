@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar class="toolbarheader">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="goEditar()">Editar datos</ion-button>
+      <ion-button (click)="goHistorial()">Historial de atenciones</ion-button>
+      <ion-button (click)="logout()">Cerrar sesión</ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <a style="color: #000000;" (click)="goHome()" class="logo-link">
+        <img src="../../assets/icon/psicoagendalogo.png" alt="Logo" class="header-logo" />
+        PsicoAgenda
+      </a>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content *ngIf="!loading" >
+  <ion-img class="imagen_carga" src="../../../assets/icon/loading (1).gif"></ion-img>
+</ion-content>
+<ion-content *ngIf="loading">
+<ion-content>
+  <!-- Sección de Cita en Curso -->
+  <ion-card class="citasencurso">
+    <ion-card-header>
+      <!--Próxima Cita Asignada-->
+      <ion-card-title>Próxima Cita</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="!showProximaCitaEmptyMessage">
+      Fecha: <strong>{{ proximaCita.fecha }}</strong><br />
+      Hora: <strong>{{ proximaCita.hora }}</strong><br />
+      Psicologo: <strong>{{ proximaCita.nombre_psicologo }}</strong><br />
+    </ion-card-content>
+    <ion-card-content *ngIf="showProximaCitaEmptyMessage">
+      <p>No hay próximas citas asignadas.</p>
+    </ion-card-content>
+  </ion-card>
+  <!-- Tabla de Historial de Atenciones -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Historial de Atenciones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content *ngIf="!showHistorialCitasEmptyMessage">
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Fecha</strong></ion-col>
+          <ion-col><strong>Hora</strong></ion-col>
+          <ion-col><strong>Datos Psicologo</strong></ion-col>
+          <ion-col><strong>Estado</strong></ion-col>
+          <ion-col><strong>Informe</strong></ion-col>
+        </ion-row>
+        <!-- ngFor para iterar sobre el array del historial de citas -->
+        <ion-row *ngFor="let cita of historialCitas">
+          <ion-col>{{ cita.fecha }} </ion-col>
+          <ion-col>{{ cita.hora }}</ion-col>
+          <ion-col>{{ cita.nombre_psicologo }}</ion-col>
+          <ion-col>{{ cita.estado_cita }}</ion-col>
+          <ion-col>
+            <button style="background-color: transparent;">
+              <ion-img (click)="downloadPDF(cita)" class="img-informe" src="../../../assets/icon/informe.png"></ion-img>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ion-card-content class="center-content" *ngIf="showHistorialCitasEmptyMessage">
+      <p>No hay citas asignadas.</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+<!-- Footer -->
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>©2024 - PsicoAgenda APP</p>
+        <p>Todos los Derechos Reservados</p>
+      </div>
+      <div class="footer-center">
+        <!-- Aquí puedes agregar el contenido del bloque central -->
+      </div>
+      <div class="footer-right">
+        <p class="logo-link"><ion-icon class="header-logo" name="call-outline"></ion-icon>Teléfono Contacto: 920256865</p>
+        <p class="logo-link"><ion-icon class="header-logo" name="logo-instagram"></ion-icon>www.instagram.com/psicoagenda</p>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

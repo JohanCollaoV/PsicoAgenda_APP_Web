@@ -1,0 +1,158 @@
+
+:root {
+    --ion-color-primary: #4a90e2; /* Color primario de la marca */
+    --ion-background-color: #f5f5f5; /* Color de fondo general */
+    
+  
+  }
+  
+  .main-banner {
+    background-color: #009688;
+    color: #000000;
+    padding: 5rem;
+    text-align: center;
+  }
+  
+  .main-banner h1 {
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    font-weight: bold;
+  }
+  
+  .main-banner p {
+    margin-bottom: 2rem;
+    font-size: 1rem;
+  }
+  
+  ion-form {
+      background-color: var(--ion-background-color);
+      padding: 20px;
+      border-radius: 10px;
+  }
+  
+  ion-item {
+      --border-color: #fff;
+      --background: #fff;
+      --color: var(--ion-color-primary);
+      --placeholder-color: var(--ion-color-primary);
+      --placeholder-opacity: 0.8;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc; /* Borde sutil para cada campo */
+  }
+  
+  ion-input {
+      --border-color: #fff;
+      --padding-start: 10px;
+      --padding-end: 10px;
+      --placeholder-color: var(--ion-input-placeholder-color);
+  }
+  
+  .ion-button-registar {
+    --background: #009688;
+    color: #fff;
+}
+
+.ion-button-registar:hover {
+  --background: #004d40; 
+}
+
+.expand{
+  width: 203px;
+}
+  
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%; /* Ajuste para responsividad */
+  max-width: 800px; /* Ancho máximo para el contenedor */
+  margin: 20px auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 10px;
+}
+  
+  ion-icon {
+    font-size: 2em; /* Tamaño de ícono más grande */
+    margin-right: 8px; /* Espacio entre el icono y el texto */
+    color: #009688; /* Asegúrate de que el color sea el definido para el texto */
+  }
+  .options-list {
+    flex-direction: column; /* Mostrar la lista de opciones en una columna */
+    width: 100%; /* Asegurarse de que la lista ocupe todo el ancho disponible */
+    margin-top: 5px; /* Espacio superior para separar el botón de las opciones */
+  }
+  ion-title {
+    text-decoration: none; /* Anular la decoración de texto (como el subrayado) */
+    color: inherit; /* Usar el color heredado del padre */
+  }
+  .titulo-formulario{
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+
+  ion-footer {
+    ion-toolbar {
+      display: flex;
+      align-items: center;
+      /* Alinea verticalmente los elementos dentro de ion-title */
+      justify-content: center;
+      align-items: center;
+      --background: #333;
+      /* Si quieres mantener este color para el footer, está bien */
+      color: #fff;
+      /* Esto hará que el texto dentro del footer sea blanco */
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  
+    .footer-content {
+      display: flexbox;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+  
+    .footer-left {
+      flex: 1;
+      /* Ocupa el espacio disponible */
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  
+    .footer-right {
+      text-align: right;
+      position: absolute;
+    }
+  
+    /* Para los enlaces dentro del footer */
+    .footer-right a {
+      color: var(--ion-text-color);
+      /* Color del texto para los enlaces */
+      text-decoration: none;
+      /* Elimina el subrayado de los enlaces */
+    }
+  
+    /* Eliminar la clase 'button' para que no afecte a los iconos */
+    .footer-right ion-icon {
+      --color: var(--ion-text-color);
+      /* Restablece el color del icono */
+    }
+  }
+  
+  ion-input {
+    margin-bottom: 15px;
+    margin-right: 10px;
+  }
+
+  ion-select {
+    margin-bottom: 15px;
+    margin-right: 10px;
+  }

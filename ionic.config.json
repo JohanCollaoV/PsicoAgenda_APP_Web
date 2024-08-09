@@ -1,0 +1,7 @@
+{
+  "name": "psico-agenda-web",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

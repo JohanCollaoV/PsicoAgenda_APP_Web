@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar class="toolbarheader">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="goEditar()">Editar datos</ion-button>
+      <ion-button (click)="goHistorial()">Historial de atenciones</ion-button>  
+      <ion-button (click)="logout()">Cerrar sesión</ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <a style="color: #000000;" (click)="goHome()" class="logo-link">
+        <img src="../../assets/icon/psicoagendalogo.png" alt="Logo" class="header-logo" />
+        PsicoAgenda
+      </a>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="PDF" *ngIf="transactionDetail; else errorTemplate" style="margin-left: 15%; margin-right: 15%;">
+    <div class="receipt-header">
+      <img src="../../assets/icon/psicoagendalogo.png" alt="Logo" class="header-logo" />
+      <h1>PsicoAgenda</h1>
+    </div>
+    <h2>Comprobante de Pago</h2>
+    <p>El pago de su cita #{{ idCita }} ha sido procesado correctamente.</p>
+    <p>Se adjuntan los datos de la transacción:</p>
+    <table id="tbl-transaction-detail">
+      <tbody>
+        <tr>
+          <td><strong>Estado:</strong></td>
+          <td>{{ transactionDetail.state }}</td>
+        </tr>
+        <tr>
+          <td><strong>Fecha Pago:</strong></td>
+          <td>{{ transactionDetail.transaction_date }}</td>
+        </tr>
+        <tr>
+          <td><strong>N° de tarjeta:</strong></td>
+          <td>XXXX XXXX XXXX {{ transactionDetail.card_number }}</td>
+        </tr>
+        <tr>
+          <td><strong>Tipo de Pago:</strong></td>
+          <td>{{ transactionDetail.pay_type }}</td>
+        </tr>
+        <tr>
+          <td><strong>Monto Pagado:</strong></td>
+          <td>{{ transactionDetail.amount }}</td>
+        </tr>
+        <tr>
+          <td><strong>Comprobante:</strong></td>
+          <td>{{ transactionDetail.authorization_code }}</td>
+        </tr>
+        <tr>
+          <td><strong>N° Orden:</strong></td>
+          <td>{{ transactionDetail.buy_order }}</td>
+        </tr>
+        <tr>
+          <td><strong>Psicologo:</strong></td>
+          <td>{{ nombrePsicologo }}</td>
+        </tr>
+        <tr>
+          <td><strong>Fecha Cita:</strong></td>
+          <td>{{ fechaCita }}</td>
+        </tr>
+        <tr>
+          <td><strong>Hora Cita:</strong></td>
+          <td>{{ horaCita }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>WebPay Plus es solo el facilitador del proceso de pago y no se hace responsable sobre la entrega de productos y servicios. Cualquier duda o consulta por favor contacta al comercio.</p>
+  </div>
+  <table class="botones" style="margin-left: 15%; margin-right: 15%; margin-bottom: 20px;">
+    <ion-button *ngIf="transactionDetail" class="boton" (click)="goHome()">Volver</ion-button>
+    <ion-button *ngIf="transactionDetail" class="boton" (click)="downloadPDF()">Descargar Comprobante</ion-button>
+  </table>
+  <ng-template #errorTemplate>
+    <div class="center-content">
+      <h2>{{ errorMessage }}</h2>
+      <ion-button *ngIf="error" class="boton" (click)="goHome()">Volver</ion-button>
+    </div>
+  </ng-template>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>©2024 - PsicoAgenda APP</p>
+        <p>Todos los Derechos Reservados</p>
+      </div>
+      <div class="footer-center">
+        <!-- Aquí puedes agregar el contenido del bloque central -->
+      </div>
+      <div class="footer-right">
+        <p class="logo-link"><ion-icon class="header-logo" name="call-outline"></ion-icon>Teléfono Contacto: 920256865</p>
+        <p class="logo-link"><ion-icon class="header-logo" name="logo-instagram"></ion-icon>www.instagram.com/psicoagenda</p>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

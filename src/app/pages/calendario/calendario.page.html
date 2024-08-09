@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar class="toolbarheader">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="goEditar()">Editar datos</ion-button>
+      <ion-button (click)="goHistorial()">Historial de atenciones</ion-button>  
+      <ion-button (click)="logout()">Cerrar sesión</ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <a style="color: #000000;" (click)="goHome()" class="logo-link">
+        <img src="../../assets/icon/psicoagendalogo.png" alt="Logo" class="header-logo" />
+        PsicoAgenda
+      </a>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="center-content">
+  <div class="horizontal-layout">
+    <ion-card class="custom-card" *ngFor="let x of lista_respuesta">
+      <ion-card-header>
+        <ion-card-title style="--color: #027f99; font-weight: bold;">{{ x.Nombre }}</ion-card-title>
+        <ion-img class="imagen1" src="../../../assets/icon/User_Circle.png"></ion-img>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ x.Descripcion }}</p>
+      </ion-card-content>
+      <ion-card-content>
+        <p>Valor Consulta: ${{ x.ValorSesion }}</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-item class="calendario">
+      <ion-datetime displayFormat="MM/DD/YYYY" presentation="date" [(ngModel)]="selectedDate"
+        (ionChange)="loadAvailableTimes()"></ion-datetime>
+    </ion-item>
+  </div>
+  <ion-list class="calendario-lista">
+    <p *ngIf="titulo">Horas Disponibles</p>
+    <p *ngIf="horas">No hay horas disponibles este día</p>
+    <p *ngIf="fechaAnterior">Lo sentimos, pero no puedes seleccionar una fecha anterior a hoy. Por favor, elige una fecha futura.</p>
+    <ion-button (click)="confirmarCita(j, c.HoraCita)" *ngFor="let c of availableTimes; let j = index">
+      <ion-label>{{ c.HoraCita }}</ion-label>
+      <p hidden id="id_cita_{{j}}">{{ c.IdCita }}</p>
+    </ion-button>
+    <form (submit)="webpay_plus_create()">
+      <ion-button class="botonpago" type="submit" *ngIf="botonPago">Reservar Hora</ion-button>
+    </form>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>©2024 - PsicoAgenda APP</p>
+        <p>Todos los Derechos Reservados</p>
+      </div>
+      <div class="footer-center">
+        <!-- Aquí puedes agregar el contenido del bloque central -->
+      </div>
+      <div class="footer-right">
+        <p class="logo-link"><ion-icon class="header-logo" name="call-outline"></ion-icon>Teléfono Contacto: 920256865
+        </p>
+        <p class="logo-link"><ion-icon class="header-logo"
+            name="logo-instagram"></ion-icon>www.instagram.com/psicoagenda</p>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

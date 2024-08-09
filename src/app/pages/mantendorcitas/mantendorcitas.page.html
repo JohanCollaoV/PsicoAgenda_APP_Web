@@ -1,0 +1,188 @@
+<ion-header>
+  <ion-toolbar class="toolbarheader">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="goUsuarios()">Editar Usuarios</ion-button>
+      <ion-button (click)="goCitas()">Modificar Citas</ion-button>
+      <ion-button (click)="logout()">Cerrar Sesión</ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <a style="color: #000000;" (click)="goHome()" class="logo-link">
+        <img src="../../assets/icon/psicoagendalogo.png" alt="Logo" class="header-logo" />
+        PsicoAgenda
+      </a>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Mantenedor de Citas</ion-card-title>
+      <ion-card-subtitle>Criterio de búsqueda</ion-card-subtitle>
+      <ion-button (click)="setOpenModal(true)" class="crear-citas-button">Crear Citas</ion-button>
+      <ion-modal [backdropDismiss]="true" [isOpen]="isModalOpen" (didDismiss)="setOpenModal(false)">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar style="--padding-start: 0px;">
+              <ion-title>Creador de Citas</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="setOpenModal(false)">Cerrar</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content class="ion-padding">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-text>Aqui puedes agregar citas para todos los psicologos indicando la fecha inicial y la fecha final</ion-text>
+                </ion-col>
+              </ion-row>
+              <br>
+              <!--<ion-row>
+                <ion-col>
+                  <input (click)="todosLosPsicologos()" class="form-check-input" type="radio" name="identificacion"
+                  id="gridRadios4" checked=""><label class="form-check-label" for="gridRadios4">Todos los Psicologos</label>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <input (click)="psicologoEspecifico()" class="form-check-input" type="radio" name="identificacion"
+                  id="gridRadios5" ><label class="form-check-label" for="gridRadios5">Psicologo Especifico</label>
+                </ion-col>
+              </ion-row>
+              <br>-->
+              <ion-row *ngIf="inputBuscador">
+                  <ion-col>
+                    <ion-select label="Selecciona un Psicologo" label-placement="floating" fill="outline">
+                      <ion-select-option *ngFor="let psicologo of lista_psicologos" [value]="psicologo.IdPsicologo">{{ psicologo.Nombre }}</ion-select-option>
+                    </ion-select>
+                  </ion-col>
+                  <br>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <ion-input [(ngModel)]="mdl_inicio" label="Fecha de Inicio" label-placement="floating" fill="outline" type="date"></ion-input>
+                </ion-col>
+                <ion-col>
+                  <ion-input [(ngModel)]="mdl_fin" label="Fecha de Termino" label-placement="floating" fill="outline" type="date"></ion-input>
+                </ion-col>
+              </ion-row>
+              <br>
+              <ion-row>
+                <ion-col>
+                  <ion-button (click)="insertarCitas()" expand="block" class="boton">Crear Citas</ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+    </ion-card-header>
+
+    <ion-card-content>
+      <input (click)="actualizarCriterioRut()" class="form-check-input" type="radio" name="identificacion"
+        id="gridRadios1" value="rut" checked=""><label class="form-check-label" for="gridRadios1">Rut</label>
+      <br>
+      <input (click)="actualizarCriterioId()" class="form-check-input" type="radio" name="identificacion"
+        id="gridRadios3" value="id"><label class="form-check-label" for="gridRadios3">Numero de Cita</label>
+      <ion-searchbar placeholder="Buscar" [(ngModel)]="mdl_dato"></ion-searchbar>
+      <ion-button class="boton" (click)="busquedaCita()">Buscar</ion-button>
+    </ion-card-content>
+    <ion-card-content *ngIf="tablaBusqueda">
+      <ion-grid>
+        <ion-row class="ion-row2">
+          <ion-col>Fecha</ion-col>
+          <ion-col>Hora</ion-col>
+          <ion-col>Paciente</ion-col>
+          <ion-col>Psicologo</ion-col>
+          <ion-col>Estado</ion-col>
+          <ion-col>Acciones</ion-col>
+        </ion-row>
+        <ion-row class="ion-row2" *ngFor="let cita of lista_respuesta">
+          <ion-col>{{ cita.FechaCita }}</ion-col>
+          <ion-col>{{ cita.HoraCita }}</ion-col>
+          <ion-col>{{ cita.NombrePaciente }}</ion-col>
+          <ion-col>{{ cita.NombrePsicologo }}</ion-col>
+          <ion-col *ngIf="!cita.isEditing">{{ cita.DescripcionEstado }}</ion-col>
+          <ion-col *ngIf="cita.isEditing">
+            <ion-select [(ngModel)]="mdl_estado" interface="popover" placeholder="Estado Cita">
+              <ion-select-option value="Asignado">Asignado</ion-select-option>
+              <ion-select-option value="Concluido">Concluido</ion-select-option>
+              <ion-select-option value="Pendiente">Pendiente</ion-select-option>
+            </ion-select>
+          </ion-col>
+          <ion-col>
+            <table>
+              <td>
+                <ion-button class="tabla" *ngIf="!cita.isEditing" style="width: 70px;"
+                  (click)="actualizarEstado(cita)">Editar</ion-button>
+              </td>
+              <td>
+                <ion-button class="tabla" *ngIf="!cita.isEditing" (click)="eliminarCita(cita.IdCita)"
+                  style="width: 70px; --background: #960000;">Eliminar</ion-button>
+              </td>
+            </table>
+            <table *ngIf="cita.isEditing">
+              <td>
+                <ion-button (click)="updateCita(cita.IdCita, cita.IdPaciente)" class="tabla"
+                  style="width: 25px;">✓</ion-button>
+              </td>
+              <td>
+                <ion-button (click)="cancelar(cita)" class="tabla"
+                  style="width: 25px; --background: #960000;">X</ion-button>
+              </td>
+            </table>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>©2024 - PsicoAgenda APP</p>
+        <p>Todos los Derechos Reservados</p>
+      </div>
+      <div class="footer-center">
+        <!-- Aquí puedes agregar el contenido del bloque central -->
+      </div>
+      <div class="footer-right">
+        <p class="logo-link"><ion-icon class="header-logo" name="call-outline"></ion-icon>Teléfono Contacto: 920256865
+        </p>
+        <p class="logo-link"><ion-icon class="header-logo"
+            name="logo-instagram"></ion-icon>www.instagram.com/psicoagenda</p>
+      </div>
+    </div>
+  </ion-toolbar>
+
+</ion-footer>
+
+<ion-alert [isOpen]="isAlertOpen" header="Información" message="Cita Actualizada" [buttons]="alertButtons"
+  (didDismiss)="setOpen(false)" (click)="recarga()">
+</ion-alert>
+
+<ion-alert [isOpen]="isAlertOpen2" header="Información" message="Error al actualizar Cita" [buttons]="alertButtons"
+  (didDismiss)="setOpen2(false)" (click)="recarga()">
+</ion-alert>
+
+<ion-alert [isOpen]="isAlertOpen3" header="Información" message="Debe escribir un dato para la busqueda"
+  [buttons]="alertButtons" (didDismiss)="setOpen3(false)" (click)="recarga()">
+</ion-alert>
+
+<ion-alert [isOpen]="isAlertOpen4" header="Información" message="Cita Eliminada"
+  [buttons]="alertButtons" (didDismiss)="setOpen4(false)" (click)="recarga()">
+</ion-alert>
+
+<ion-alert [isOpen]="isAlertOpen5" header="Información" message="Error al eliminar cita"
+  [buttons]="alertButtons" (didDismiss)="setOpen5(false)" (click)="recarga()">
+</ion-alert>
+
+<ion-alert [isOpen]="isAlertOpen6" header="Información" message="Debe indicar ambas fechas para crear las citas"
+  [buttons]="alertButtons" (didDismiss)="setOpen6(false)" (click)="recarga()">
+</ion-alert>

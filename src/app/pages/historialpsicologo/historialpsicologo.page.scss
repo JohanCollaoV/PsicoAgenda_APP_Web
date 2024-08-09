@@ -1,0 +1,139 @@
+
+ .imagen {
+   max-width: 80%;
+   height: auto;
+   width: 100%;
+   margin-left: 200px;
+ }
+
+ .options-list {
+   flex-direction: column;
+   width: 100%;
+   margin-top: 5px;
+ }
+
+ ion-title {
+   text-decoration: none;
+   color: inherit;
+ }
+
+ /* Estilos específicos para la tabla de citas */
+ ion-card {
+   margin: 20px;
+   /* Espacio alrededor de la tarjeta */
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+   /* Sombra ligera para la tarjeta */
+   width: 75%;
+   /* La tarjeta ocupa el 75% del ancho de la pantalla */
+   margin-left: auto;
+   /* Centrado horizontalmente */
+   margin-right: auto;
+   /* Centrado horizontalmente */
+ }
+
+ ion-grid {
+   --ion-grid-padding: 0;
+   width: 100%;
+ }
+
+ ion-row {
+   border-bottom: 1px solid #ccc;
+ }
+
+ ion-col {
+   text-align: center;
+   padding: 8px;
+   border-right: 1px solid #ccc;
+ }
+
+ ion-col:last-child {
+   border-right: none;
+ }
+
+ ion-card-header {
+   background-color: #009688;
+   color: white;
+   text-align: center;
+   padding: 10px 0;
+ }
+
+ ion-card-title {
+   font-size: 1.2rem;
+ }
+
+ ion-footer {
+   ion-toolbar {
+     display: flex;
+     align-items: center;
+     /* Alinea verticalmente los elementos dentro de ion-title */
+     justify-content: center;
+     align-items: center;
+     --background: #333;
+     /* Si quieres mantener este color para el footer, está bien */
+     color: #fff;
+     /* Esto hará que el texto dentro del footer sea blanco */
+     padding: 1.5rem;
+     font-size: 0.8rem;
+     text-align: center;
+   }
+
+   .footer-content {
+     display: flexbox;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+   }
+
+   .footer-left {
+     flex: 1;
+     /* Ocupa el espacio disponible */
+   }
+
+   .footer-right {
+     text-align: right;
+   }
+
+   /* Para los enlaces dentro del footer */
+   .footer-right a {
+     color: var(--ion-text-color);
+     /* Color del texto para los enlaces */
+     text-decoration: none;
+     /* Elimina el subrayado de los enlaces */
+     position: absolute;
+   }
+
+   /* Eliminar la clase 'button' para que no afecte a los iconos */
+   .footer-right ion-icon {
+     --color: var(--ion-text-color);
+     /* Restablece el color del icono */
+   }
+ }
+
+ /* Estilos para los iconos */
+ ion-icon {
+   font-size: 2em;
+   /* Tamaño de ícono más grande */
+   /* Espacio entre el icono y el texto */
+   color: #009688;
+   /* Asegúrate de que el color sea el definido para el texto */
+   width: 24px;
+   /* Ajusta el tamaño del icono si es necesario */
+   height: 24px;
+   /* Ajusta el tamaño del icono si es necesario */
+ }
+
+ .center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px; /* Ajusta la altura según sea necesario */
+  text-align: center;
+}
+
+.imagen_carga {
+  width: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15%;
+
+}

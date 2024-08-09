@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar class="toolbarheader">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="goEditar()">Editar datos</ion-button>
+      <ion-button (click)="goHistorial()">Mi Historial</ion-button>
+      <ion-button (click)="goAtenciones()">Mis Atenciones</ion-button>
+      <ion-button (click)="logout()">Cerrar sesión</ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <a style="color: #000000;" (click)="goHome()" class="logo-link">
+        <img src="../../assets/icon/psicoagendalogo.png" alt="Logo" class="header-logo" />
+        PsicoAgenda
+      </a>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!loading" >
+  <ion-img class="imagen_carga" src="../../../assets/icon/loading (1).gif"></ion-img>
+</ion-content>
+<ion-content *ngIf="loading">
+  <div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Próximas Atenciones</ion-card-title>
+      </ion-card-header>
+      <ion-card-content *ngIf="!showAtencionesCitasEmptyMessage">
+        <ion-grid>
+          <ion-row>
+            <ion-col>Fecha</ion-col>
+            <ion-col>Hora</ion-col>
+            <ion-col>Paciente</ion-col>
+            <ion-col>Ficha</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let cita of atencionesCitas; let i = index">
+            <ion-col>{{ cita.FechaCita }}</ion-col>
+            <ion-col>{{ cita.HoraCita }}</ion-col>
+            <ion-col>{{ cita.Nombre_Paciente }}</ion-col>
+            <p hidden id="id_paciente_{{i}}">{{ cita.IdPaciente }}</p>
+            <ion-col>
+              <ion-button (click)="verFicha(i)">Ver Ficha</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+      <ion-card-content *ngIf="showAtencionesCitasEmptyMessage" class="center-content">
+        <p>No hay próximas citas asignadas.</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>©2024 - PsicoAgenda APP</p>
+        <p>Todos los Derechos Reservados</p>
+      </div>
+      <div class="footer-right">
+        <p class="logo-link"><ion-icon class="header-logo" name="call-outline"></ion-icon>Teléfono Contacto: 920256865</p>
+        <p class="logo-link"><ion-icon class="header-logo" name="logo-instagram"></ion-icon>www.instagram.com/psicoagenda</p>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

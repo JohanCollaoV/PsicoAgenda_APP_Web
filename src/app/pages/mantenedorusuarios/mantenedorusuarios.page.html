@@ -1,0 +1,181 @@
+<ion-header>
+  <ion-toolbar class="toolbarheader">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="goUsuarios()">Editar Usuarios</ion-button>
+      <ion-button (click)="goCitas()">Modificar Citas</ion-button>
+      <ion-button (click)="logout()">Cerrar Sesión</ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <a style="color: #000000;" (click)="goHome()" class="logo-link">
+        <img src="../../assets/icon/psicoagendalogo.png" alt="Logo" class="header-logo" />
+        PsicoAgenda
+      </a>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Editar Usuarios</ion-card-title>
+      <ion-card-subtitle>Criterio de búsqueda</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <input (click)="actualizarCriterioRut()" class="form-check-input" type="radio" name="identificacion"
+        id="gridRadios1" value="rut" checked=""><label class="form-check-label" for="gridRadios1">Rut</label>
+      <br>
+      <input (click)="actualizarCriterioId()" class="form-check-input" type="radio" name="identificacion"
+        id="gridRadios3" value="id"><label class="form-check-label" for="gridRadios3">ID Usuario</label>
+      <ion-searchbar placeholder="Buscar" [(ngModel)]="mdl_dato"></ion-searchbar>
+      <ion-button (click)="busquedaUsuario()" class="boton">Buscar</ion-button>
+    </ion-card-content>
+    
+    <ion-card-content *ngIf="formPsicologo">
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Primer Nombre" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_nombre"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input label="Segundo Nombre" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_nombre2"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Primer Apellido" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_apellido"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input label="Segundo Apellido" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_apellido2"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Comuna" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_comuna"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input label="Calle" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_calle"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Numeración" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_numeracion"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input label="Teléfono" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_telefono"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Valor por la sesión" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_valor"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-select (click)="updateEspecialidad()"  fill="outline" [(ngModel)]="mdl_estado" interface="popover" placeholder="Especialidad">
+                <ion-select-option *ngFor="let especialiadades of lista_especialidades">{{ especialiadades.NombreEspecialidad }}</ion-select-option>
+              </ion-select>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Descripción" label-placement="floating" fill="outline" type="text" 
+              [(ngModel)]="mdl_descripcion"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button *ngIf="botonConfirmar" expand="block" (click)="parametros()" style="--background: #004696;" class="boton">Confirmar Datos</ion-button>
+              <ion-button *ngIf="botonGuardar" expand="block" (click)="actualizarDatos()" class="boton">Guardar Datos</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button (click)="cancelar()" expand="block" style="--background: #960000;" class="boton">Cancelar</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </ion-card-content>
+    <ion-card-content *ngIf="formPaciente">
+      <div>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Primer Nombre" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_nombre"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input label="Segundo Nombre" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_nombre2"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Primer Apellido" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_apellido"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input label="Segundo Apellido" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_apellido2"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Comuna" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_comuna"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input label="Calle" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_calle"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-input label="Numeración" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_numeracion"></ion-input>
+            </ion-col>
+            <ion-col>
+              <ion-input label="Teléfono" label-placement="floating" fill="outline" type="text" [(ngModel)]="mdl_telefono"></ion-input>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button *ngIf="botonConfirmar" expand="block" (click)="parametros()" style="--background: #004696;" class="boton">Confirmar Datos</ion-button>
+              <ion-button *ngIf="botonGuardar" expand="block" (click)="actualizarDatos()" class="boton">Guardar Datos</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button (click)="cancelar()" expand="block" style="--background: #960000;" class="boton">Cancelar</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>        
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>©2024 - PsicoAgenda APP</p>
+        <p>Todos los Derechos Reservados</p>
+      </div>
+      <div class="footer-center">
+        <!-- Aquí puedes agregar el contenido del bloque central -->
+      </div>
+      <div class="footer-right">
+        <p class="logo-link"><ion-icon class="header-logo" name="call-outline"></ion-icon>Teléfono Contacto: 920256865
+        </p>
+        <p class="logo-link"><ion-icon class="header-logo"
+            name="logo-instagram"></ion-icon>www.instagram.com/psicoagenda</p>
+      </div>
+    </div>
+  </ion-toolbar>
+
+</ion-footer>
+
+<ion-alert [isOpen]="isAlertOpen" header="Información" message="Datos Actualizados" [buttons]="alertButtons"
+  (didDismiss)="setOpen(false)" (click)="cancelar()">
+</ion-alert>
+
+<ion-alert [isOpen]="isAlertOpen2" header="Información" message="Error al actualizar datos" [buttons]="alertButtons"
+  (didDismiss)="setOpen2(false)" (click)="cancelar()">
+</ion-alert>
+
+<ion-alert [isOpen]="isAlertOpen3" header="Información" message="Debe escribir un dato para la busqueda" [buttons]="alertButtons"
+  (didDismiss)="setOpen3(false)" (click)="cancelar()">
+</ion-alert>

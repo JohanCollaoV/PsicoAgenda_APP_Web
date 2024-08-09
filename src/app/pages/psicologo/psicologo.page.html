@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar class="toolbarheader">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="goEditar()">Editar datos</ion-button>
+      <ion-button (click)="goHistorial()">Mi Historial</ion-button>
+      <ion-button (click)="goAtenciones()">Mis Atenciones</ion-button>
+      <ion-button (click)="logout()">Cerrar sesión</ion-button>
+    </ion-buttons>
+    <ion-title class="header-title">
+      <a style="color: #000000;" (click)="goHome()" class="logo-link">
+        <img src="../../assets/icon/psicoagendalogo.png" alt="Logo" class="header-logo" />
+        PsicoAgenda
+      </a>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Sección para agendar cita con Gerardo Gutierrez -->
+  <ion-card class="ioncard" style="margin-top: 2.3rem;">
+    <ion-card-header>
+      <ion-card-title>Mis Atenciones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-content>
+        Aqui podras revisar tus proximas atenciones
+      </ion-card-content>
+      <ion-button (click)="goAtenciones()" class="button-agenda">Ir a mis Atenciones</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="ioncard" style="margin-top: 1.5rem;">
+    <ion-card-header>
+      <ion-card-title>Soporte</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-content>
+        Realiza consultas, cancela o reagenda tus horas
+      </ion-card-content>
+      <ion-button (click)="goSoporte()" class="button-agenda">Ir a Soporte</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="ioncard" style="margin-top: 1.5rem;">
+    <ion-card-header>
+      <ion-card-title>Historial</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-content>
+        Aqui puedes revisar tu historial de atenciones
+      </ion-card-content>
+      <ion-button (click)="goHistorial()" class="button-agenda">Ir a tu Historial</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <div class="footer-content">
+      <div class="footer-left">
+        <p>©2024 - PsicoAgenda APP</p>
+        <p>Todos los Derechos Reservados</p>
+      </div>
+      <div class="footer-center">
+        <!-- Aquí puedes agregar el contenido del bloque central -->
+      </div>
+      <div class="footer-right">
+        <p class="logo-link"><ion-icon class="header-logo" name="call-outline"></ion-icon>Teléfono Contacto: 920256865
+        </p>
+        <p class="logo-link"><ion-icon class="header-logo"
+            name="logo-instagram"></ion-icon>www.instagram.com/psicoagenda</p>
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

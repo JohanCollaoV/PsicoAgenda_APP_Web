@@ -1,0 +1,161 @@
+ion-footer {
+  --background: var(--ion-footer-background);
+  /* Usa el fondo oscuro definido */
+  color: var(--ion-footer-text-color);
+  /* Asegura que el texto sea blanco */
+  width: 100%;
+  /* Asegura que ocupa todo el ancho */
+  padding: 0;
+  /* Elimina cualquier padding interno que podría afectar el ancho */
+  box-sizing: border-box;
+  /* Asegura que el padding y border no afecten el ancho total */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  /* Esto asegura que el footer se mueva con el contenido */
+}
+
+ion-footer {
+  ion-toolbar {
+    display: flex;
+    align-items: center;
+    /* Alinea verticalmente los elementos dentro de ion-title */
+    justify-content: center;
+    align-items: center;
+    --background: #333;
+    /* Si quieres mantener este color para el footer, está bien */
+    color: #fff;
+    /* Esto hará que el texto dentro del footer sea blanco */
+    padding: 1.5rem;
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .footer-content {
+    display: flexbox;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .footer-left {
+    flex: 1;
+    /* Ocupa el espacio disponible */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .footer-right {
+    text-align: right;
+    position: absolute;
+  }
+
+  /* Para los enlaces dentro del footer */
+  .footer-right a {
+    color: var(--ion-text-color);
+    /* Color del texto para los enlaces */
+    text-decoration: none;
+    /* Elimina el subrayado de los enlaces */
+  }
+
+  /* Eliminar la clase 'button' para que no afecte a los iconos */
+  .footer-right ion-icon {
+    --color: var(--ion-text-color);
+    /* Restablece el color del icono */
+  }
+}
+
+ion-icon {
+  font-size: 2em;
+  /* Tamaño de ícono más grande */
+  /* Espacio entre el icono y el texto */
+  color: #009688;
+  /* Asegúrate de que el color sea el definido para el texto */
+  width: 24px;
+  /* Ajusta el tamaño del icono si es necesario */
+  height: 24px;
+  /* Ajusta el tamaño del icono si es necesario */
+}
+
+ion-toolbar {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --background: #32E0C4;
+}
+
+
+.center-content {
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  height: 100%; /* Asegura que ocupa toda la altura disponible */
+  width: 100%; /* Asegura que ocupa todo el ancho disponible */
+  flex-direction: column; 
+}
+
+.horizontal-layout {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* Centra el contenido horizontalmente */
+  align-items: stretch;
+  width: 100%;
+  /* Asegura que el layout horizontal ocupa todo el ancho del contenedor padre */
+  gap: 1px;
+}
+
+.card-content-md p {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1.25rem;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.custom-card {
+  --background: url(../../../assets/icon/1600w-9JEcmfgB4FU.png) no-repeat center center / cover;
+  flex: 0.5;
+  /* Asigna el mismo espacio a cada elemento */
+  margin: 1%;
+  /* Espacio alrededor de cada elemento */
+  width: 100%;
+  text-align: center;
+}
+
+.calendario {
+  margin: 1%;
+}
+
+.calendario-lista {
+  margin-top: 0;
+  width: 100%; /* Asegura que la lista de horarios ocupe todo el ancho del contenedor */
+  text-align: center; /* Centra el texto de los botones dentro de la lista */
+}
+
+.imagen1 {
+  max-width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+ion-card-header {
+  margin-top: 6%;
+}
+
+.botonpago {
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  max-width: 20%;
+  --background: #32E0C4;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

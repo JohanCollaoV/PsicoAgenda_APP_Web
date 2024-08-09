@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/login">Entrar</ion-button>
+      <ion-button>Registrarse</ion-button>
+      <ion-button (click)="toggleOptions()">Profesionales</ion-button>
+      <ion-list *ngIf="showOptions">
+        <ion-item (click)="redirectTo('/login')">Ingresa</ion-item>
+        <ion-item (click)="redirectTo('/registropsico')">Registrate</ion-item>
+      </ion-list>
+    </ion-buttons>
+    <ion-title style="text-decoration: none;">
+      <a routerLink="/home" style="text-decoration: none;">
+        <img src="../../assets/icon/psicoagendalogo.png" style="height: 40px; margin-right: 8px;" alt="Logo"/>
+      </a>
+      PsicoAgenda
+    </ion-title>
+  </ion-toolbar>
+</ion-header>

@@ -1,0 +1,158 @@
+  ion-icon {
+    font-size: 2em;
+    margin-right: 8px;
+    color: #009688;
+    /* Color característico */
+  }
+
+  /* Adaptación para el diseño de las tarjetas y tabla */
+  ion-card {
+    margin: 20px auto;
+    /* Centrado y espacio alrededor de la tarjeta */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Sombra ligera para la tarjeta */
+    width: 75%;
+    /* La tarjeta ocupa el 75% del ancho de la pantalla */
+  }
+
+  ion-grid {
+    --ion-grid-padding: 0;
+    width: 100%;
+  }
+
+  ion-row {
+    border-bottom: 1px solid #ccc;
+  }
+
+  ion-col {
+    text-align: center;
+    padding: 8px;
+    border-right: 1px solid #ccc;
+  }
+
+  ion-col:last-child {
+    border-right: none;
+  }
+
+  ion-card-header {
+    background-color: #009688;
+    /* Color turquesa para la cabecera */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  ion-card-title {
+    font-size: 1.2rem;
+  }
+
+  /* Mejora del responsive */
+  @media (max-width: 600px) {
+    ion-card {
+      width: 90%;
+      /* Más ancho en pantallas pequeñas */
+    }
+  }
+
+  .citasencurso {
+    width: 20%;
+    text-align: center;
+  }
+
+  ion-footer {
+    ion-toolbar {
+      display: flex;
+      align-items: center;
+      /* Alinea verticalmente los elementos dentro de ion-title */
+      justify-content: center;
+      align-items: center;
+      --background: #333;
+      /* Si quieres mantener este color para el footer, está bien */
+      color: #fff;
+      /* Esto hará que el texto dentro del footer sea blanco */
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: flexbox;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .footer-left {
+      flex: 1;
+      /* Ocupa el espacio disponible */
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .footer-right {
+      text-align: right;
+      position: absolute;
+    }
+
+    /* Para los enlaces dentro del footer */
+    .footer-right a {
+      color: var(--ion-text-color);
+      /* Color del texto para los enlaces */
+      text-decoration: none;
+      /* Elimina el subrayado de los enlaces */
+    }
+
+    /* Eliminar la clase 'button' para que no afecte a los iconos */
+    .footer-right ion-icon {
+      --color: var(--ion-text-color);
+      /* Restablece el color del icono */
+    }
+  }
+
+  ion-icon {
+    font-size: 2em;
+    /* Tamaño de ícono más grande */
+    /* Espacio entre el icono y el texto */
+    color: #009688;
+    /* Asegúrate de que el color sea el definido para el texto */
+    width: 24px;
+    /* Ajusta el tamaño del icono si es necesario */
+    height: 24px;
+    /* Ajusta el tamaño del icono si es necesario */
+  }
+
+  ion-toolbar {
+    --padding-start: 16px;
+    --padding-end: 16px;
+    --background: #32E0C4;
+  }
+
+  .img-informe {
+    max-width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  ion-col {
+    align-self: center; 
+    border-color: transparent;
+  }
+
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px; /* Ajusta la altura según sea necesario */
+    text-align: center;
+  }
+  
+  
+  .imagen_carga {
+    width: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15%;
+  
+  }
